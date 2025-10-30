@@ -3,7 +3,7 @@
 add_executable(main 
   # <item1> <item2> ... - assembler source files *.s *.asm
   main.c 
-  dumb.asm
+  # dumb.asm
 )
 # ---- remove end
 
@@ -17,6 +17,6 @@ ihx_to_hex(main)
 # upload firmware to STC MCU
 add_custom_target(flash
     COMMAND stcgal ${CMAKE_BINARY_DIR}/src/main.hex
-    DEPENDS blink
+    DEPENDS main
     JOB_POOL console # for ninja build tool output stgal command input to console
 )
