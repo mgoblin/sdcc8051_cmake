@@ -2,16 +2,14 @@
 
 #define LED_PIN P10
 
-// extern void delay(void);
-
-void __sdcc_external_startup(void) {}
+extern void delay(void);
 
 void main(void)
 {
     while (1)
     {
         LED_PIN = !LED_PIN;
-//        delay();
+        delay();
     }
     
 }

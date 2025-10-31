@@ -3,7 +3,7 @@
 add_executable(main 
   # <item1> <item2> ... - assembler source files *.s *.asm
   main.c 
-  # dumb.asm
+  dumb.asm
 )
 # ---- remove end
 

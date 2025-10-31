@@ -1,7 +1,11 @@
 # the name of the target operating system
 set(CMAKE_SYSTEM_NAME Generic)
+set(CMAKE_SYSTEM_VERSION 1)
+set(CMAKE_SYSTEM_PROCESSOR 8051)
 
 set(CMAKE_CROSSCOMPILING TRUE)
+
+# find_package("generic-sdcc-c" REQUIRED)
 
 if("${SDCC_LOCATION}" STREQUAL "")
 	set(SDCC_LOCATION "/usr/bin") # Change it
@@ -40,6 +44,8 @@ set(CMAKE_FIND_ROOT_PATH  /usr/share/sdcc)
 set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
 set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
 set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
+
+set(CMAKE_TRY_COMPILE_TARGET_TYPE STATIC_LIBRARY)
 
 if(WIN32)
 	# !! Firmware size output not tested !!
