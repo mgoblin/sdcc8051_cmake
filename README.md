@@ -50,3 +50,62 @@ cmake -G "Unix Makefiles" ..
 # For ninja build tool, but dont use make and ninja at the same time
 cmake -G "Ninja" ..
 ```
+
+This command generate files to build project using make utility (or ninja). Command output is:
+
+```
+-- The ASM compiler identification is SDAS8051
+-- Found assembler: /usr/bin/sdas8051
+-- The C compiler identification is SDCC
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/sdcc - skipped
+-- Configuring done (0.3s)
+-- Generating done (0.0s)
+-- Build files have been written to: <absoule path to template_dir/build folder> 
+```
+
+Now you are ready to build firmware and static library. Run command:
+```bash
+make
+# or ninja 
+```
+Command output is:
+```
+[ 33%] Building C object src/CMakeFiles/main.dir/main.rel
+[ 66%] Building ASM object src/CMakeFiles/main.dir/dumb.rel
+[100%] Linking C executable main.ihx
+packihx: read 15 lines, wrote 20: OK.
+Firmware bytes size: 193
+[100%] Built target main
+```
+
+Yap. Success. You can find firmware hex file &lt;template dir&gt;/build/src/main.hex
+
+f you have STC MCU (dev board) connected to PC with something like [STC programmator](https://github.com/mgoblin/STC-programmator) firmware could be uploaded.
+
+Assume terminal in &lt;template dir&gt;/build folder.
+To upload firmware run:
+```bash
+make flash
+```
+This command run stcgal flash tool.
+
+Once the download is complete, the LED on the microcontroller pin P10 will start blinking.
+
+## Change C and ASM source files
+Source code files placed in &lt;template dir&gt;/src subfolder. 
+For demo purposes template contains one assembler source code file **dumb.s** and C file **main.c**. main.c call delay function from assembler dumb.s.
+
+Assembler source files must have s or asm extension.
+
+For change builded source files place it to src folder and edit src/CmakeLists.txt.
+
+```cmake
+# Firmware build description
+add_executable(blink 
+  # <item1> <item2> ... - source files *.s *.asm *.c
+  main.c
+  dumb.s 
+)
+```
