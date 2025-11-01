@@ -109,3 +109,21 @@ add_executable(blink
   dumb.s 
 )
 ```
+
+# Change compiler and linker flags (optional)
+See SDCC documentation and edit src folder CMakeLists.txt
+
+For compile flags change:
+```cmake
+target_compile_options(main PRIVATE
+  $<IF:$<COMPILE_LANGUAGE:C>, -mmcs51 --model-small -std-c23 --debug,>
+  $<IF:$<COMPILE_LANGUAGE:ASM>, -lso -a -y,>
+)
+```
+
+For link flags change
+```cmake
+target_link_options(main PRIVATE
+  -mmcs51 --debug
+)
+```
