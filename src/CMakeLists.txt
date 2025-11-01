@@ -2,7 +2,7 @@
 # Firmware build description
 add_executable(main 
   # <item1> <item2> ... - assembler source files *.s *.asm
-  main.c 
+  main.c
   dumb.asm
 )
 # ---- remove end
@@ -12,12 +12,12 @@ target_include_directories(main
 )
 
 target_compile_options(main PRIVATE
-  $<IF:$<COMPILE_LANGUAGE:C>, -mmcs51 --model-small --std-sdcc99 --debug --nostdlib --no-xinit-opt --opt-code-size,>
-  $<IF:$<COMPILE_LANGUAGE:ASM>, -lso -a -y,>
+  $<IF:$<COMPILE_LANGUAGE:C>, -mmcs51 --model-small --std-c23 --debug --no-xinit-opt --opt-code-size,>
+  $<IF:$<COMPILE_LANGUAGE:ASM>, -plosgff,>
 )
 
 target_link_options(main PRIVATE
-  -mmcs51 --debug --no-std-crt0
+  -mmcs51 --debug
 )
 
 # Transform firmware ihx to hex

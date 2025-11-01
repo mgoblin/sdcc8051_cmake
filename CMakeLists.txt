@@ -5,7 +5,7 @@ file(REAL_PATH "toolchain-SDCC.cmake" CMAKE_TOOLCHAIN_FILE EXPAND_TILDE)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-project(blink LANGUAGES C ASM) # Define project name and language
+project(blink LANGUAGES ASM C) # Define project name and language
 
 set(CMAKE_C_STANDARD 23)
 set(CMAKE_C_STANDARD_REQUIRED ON)
